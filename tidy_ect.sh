@@ -14,7 +14,7 @@ source "$LIBRARY/util/message.sh"
 source "$LIBRARY/util/option.sh"
 
 
-packaging_options+=('ect' 'ect_png' 'ect_jpg' 'ect_zip' 'ect_jar' 'ect_gzip')
+packaging_options+=('ect' 'ect_png' 'ect_jpg' 'ect_zip' 'ect_xpi' 'ect_jar' 'ect_gzip')
 tidy_modify+=('tidy_ect')
 
 ECT_OPTS="-9 -keep --strict --mt-deflate"
@@ -22,7 +22,7 @@ ECT_OPTS="-9 -keep --strict --mt-deflate"
 tidy_ect() {
   if check_option "ect" "y"; then
     msg2 "$(gettext "Compressing files with ect...")"
-    options+=('ect_png' 'ect_jpg' 'ect_zip' 'ect_jar' 'ect_gzip')
+    options+=('ect_png' 'ect_jpg' 'ect_zip' 'ect_xpi' 'ect_jar' 'ect_gzip')
   fi
 
   if check_option "ect_png" "y"; then
@@ -38,6 +38,11 @@ tidy_ect() {
   if check_option "ect_zip" "y"; then
     msg2 "$(gettext "Compressing ZIPs ....")"
     find . -type f -iname "*.zip" -exec ect -zip $ECT_OPTS '{}' + 2>/dev/null
+  fi
+
+  if check_option "ect_xpi" "y"; then
+    msg2 "$(gettext "Compressing XPIs ....")"
+    find . -type f -iname "*.xpi" -exec ect -zip $ECT_OPTS '{}' + 2>/dev/null
   fi
 
 #	if check_option "ect_jar" "y"; then

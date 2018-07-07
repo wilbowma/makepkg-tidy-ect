@@ -1,8 +1,8 @@
 makepkg-tidy-ect
 ===
 
-A `libmakepkg` tidy extension that runs `ect` on all PNGs, JPEGs, ZIPs, and
-GZIPs in an installed package, optimizing their size.
+A `libmakepkg` tidy extension that runs `ect` on all PNGs, JPEGs, ZIPs, XPIs,
+and GZIPs in an installed package, optimizing their size.
 
 ## Installation
 Drop `tidy_ect.sh` into `/usr/share/makepkg/tidy`.
@@ -18,6 +18,7 @@ This can be done on a per-`PKGBUILD` basis, or in `/etc/makepkg.conf`.
 - `ect_png`: compresses all PNGs found in the `pkgdir`.
 - `ect_jpg`: compresses all JPGs found in the `pkgdir`.
 - `ect_zip`: compresses all ZIPs found in the `pkgdir`.
+- `ect_xpi`: compresses all XPIs found in the `pkgdir`.
 - `ect_gzip`: compresses all GZIPs found in the `pkgdir`.
 
 For example, my `OPTIONS` array in `/etc/makepkg.conf` is the following:
