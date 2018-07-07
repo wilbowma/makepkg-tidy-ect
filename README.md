@@ -14,6 +14,9 @@ To enable it during a `makepkg` run, see below.
 Add one or more of the following to the `OPTIONS` array used by `makepkg`.
 This can be done on a per-`PKGBUILD` basis, or in `/etc/makepkg.conf`.
 
+Currently, optimizing ZIP and XPI files are disabled due to a possible
+bug.
+
 - `ect`: enables all of the following options.
 - `ect_png`: compresses all PNGs found in the `pkgdir`.
 - `ect_jpg`: compresses all JPGs found in the `pkgdir`.
