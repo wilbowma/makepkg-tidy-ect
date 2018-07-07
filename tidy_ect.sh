@@ -20,37 +20,33 @@ tidy_modify+=('tidy_ect')
 ECT_OPTS="-9 -keep --strict --mt-deflate"
 
 tidy_ect() {
-	if check_option "ect" "y"; then
+  if check_option "ect" "y"; then
     msg2 "$(gettext "Compressing files with ect...")"
     options+=('ect_png' 'ect_jpg' 'ect_zip' 'ect_jar' 'ect_gzip')
   fi
 
-	if check_option "ect_png" "y"; then
-		msg2 "$(gettext "Compressing PNGs ....")"
-    #find . -depth -type f -iname "*.png" -print0 | xargs -0 -r ect $ECT_OPTS
-    find . -depth -type f -iname "*.png" -exec ect $ECT_OPTS '{}' \;
+  if check_option "ect_png" "y"; then
+    msg2 "$(gettext "Compressing PNGs ....")"
+    find . -type f -iname "*.png" -exec ect $ECT_OPTS '{}' + 2>/dev/null
   fi
 
-	if check_option "ect_jpg" "y"; then
+  if check_option "ect_jpg" "y"; then
     msg2 "$(gettext "Compressing JPGs ....")"
-    #find . -depth -type f -iname "*.jpg" -or -iname "*.jpeg" -print0 | xargs -0 -r ect -progresive $ECT_OPTS
-    find . -depth -type f -iname "*.jpg" -or -iname "*.jpeg" -exec ect -progresive $ECT_OPTS '{}' \;
+    find . -type f \( -iname "*.jpg" -or -iname "*.jpeg" \) -exec ect -progresive $ECT_OPTS '{}' + 2>/dev/null
   fi
 
-	if check_option "ect_zip" "y"; then
-		msg2 "$(gettext "Compressing ZIPs ....")"
-    #find . -depth -type f -iname "*.zip" -print0 | xargs -0 -r ect -zip $ECT_OPTS 2>/dev/null
-    find . -depth -type f -iname "*.zip" -exec ect -zip $ECT_OPTS '{}' \; 2>/dev/null
+  if check_option "ect_zip" "y"; then
+    msg2 "$(gettext "Compressing ZIPs ....")"
+    find . -type f -iname "*.zip" -exec ect -zip $ECT_OPTS '{}' + 2>/dev/null
   fi
 
 #	if check_option "ect_jar" "y"; then
 #    msg2 "$(gettext "Compressing JARs ....")"
-#    #find . -depth -type f -iname "*.jar" -print0 | xargs -0 -r ect -zip $ECT_OPTS 2>/dev/null
+#    #find . -type f -iname "*.jar" -print0 | xargs -0 -r ect -zip $ECT_OPTS 2>/dev/null
 #  fi
 
   if check_option "ect_gzip" "y"; then
-		msg2 "$(gettext "Compressing GZIPs ....")"
-    #find . -depth -type f -iname "*.gzip" -or -iname "*.gz" -print0 | xargs -0 -r ect -gzip $ECT_OPTS 2>/dev/null
-    find . -depth -type f -iname "*.gzip" -or -iname "*.gz" -exec ect -gzip $ECT_OPTS '{}' \; 2>/dev/null
+    msg2 "$(gettext "Compressing GZIPs ....")"
+    find . -type f -iname "*.gzip" -or -iname "*.gz" -exec ect -gzip $ECT_OPTS '{}' + 2>/dev/null
   fi
 }
