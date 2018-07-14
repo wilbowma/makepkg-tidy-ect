@@ -40,10 +40,10 @@ tidy_ect() {
 #    find . -type f -iname "*.zip" -exec ect -zip $ECT_OPTS '{}' + 2>/dev/null
 #  fi
 #
-#  if check_option "ect_xpi" "y"; then
-#    msg2 "$(gettext "Compressing XPIs ....")"
-#    find . -type f -iname "*.xpi" -exec ect -zip $ECT_OPTS '{}' + 2>/dev/null
-#  fi
+  if check_option "ect_xpi" "y"; then
+    msg2 "$(gettext "Compressing XPIs ....")"
+    find . -type f -iname "*.xpi" -exec ect -gzip $ECT_OPTS '{}' \; 2>/dev/null
+  fi
 
 #	if check_option "ect_jar" "y"; then
 #    msg2 "$(gettext "Compressing JARs ....")"
