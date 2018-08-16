@@ -32,7 +32,7 @@ tidy_ect() {
 
   if check_option "ect_jpg" "y"; then
     msg2 "$(gettext "Compressing JPGs ....")"
-    find . -type f \( -iname "*.jpg" -or -iname "*.jpeg" \) -exec ect -progresive $ECT_OPTS '{}' + 2>/dev/null
+    find . -type f \( -iname "*.jpg" -or -iname "*.jpeg" \) -exec ect $ECT_OPTS '{}' + 2>/dev/null
   fi
 
 #  if check_option "ect_zip" "y"; then
