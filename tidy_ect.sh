@@ -52,6 +52,6 @@ tidy_ect() {
 
   if check_option "ect_gzip" "y"; then
     msg2 "$(gettext "Compressing GZIPs ....")"
-    find . -type f -iname "*.gzip" -or -iname "*.gz" -exec ect -gzip $ECT_OPTS '{}' + 2>/dev/null
+    find . -type f -iname \( "*.gzip" -or -iname "*.gz" \)  -exec ect -gzip $ECT_OPTS '{}' + 2>/dev/null
   fi
 }
